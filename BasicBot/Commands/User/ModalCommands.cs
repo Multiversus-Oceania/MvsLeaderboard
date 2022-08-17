@@ -1,18 +1,9 @@
-﻿using Discord;
-using Discord.Commands;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq;
-using System.Xml;
-using Discord.WebSocket;
-using static BasicBot.Handler.User;
-using Discord.Interactions;
-using SummaryAttribute = Discord.Interactions.SummaryAttribute;
-using static BasicBot.Commands.ModalCommand;
-using BasicBot.Settings;
+﻿using System.Threading.Tasks;
 using BasicBot.Handler;
+using BasicBot.MonarkTypes;
+using Discord;
+using Discord.Interactions;
+using Discord.WebSocket;
 
 namespace BasicBot.Commands
 {
@@ -30,6 +21,8 @@ namespace BasicBot.Commands
             public string Text { get; set; }
         }
 
+        public static MultiversusApiHandler ApiHandler = new();
+
         // Responds to the modal.
         [ModalInteraction("register")]
         public async Task MsgModalModal(RegisterModal modal)
@@ -37,44 +30,45 @@ namespace BasicBot.Commands
             await Context.Interaction.DeferAsync(true);
             var reply = await AddUserToLeaderBoard(Context.Guild, Context.User.Id, modal.Text);
             await reply.SendMessage(Context.Interaction);
-
         }
 
-        public static async Task<MonarkTypes.Message.MonarkMessage> AddUserToLeaderBoard(SocketGuild guild, ulong userId, string wbName)
+        public static async Task<Message.MonarkMessage> AddUserToLeaderBoard(SocketGuild guild, ulong userId,
+            string wbName)
         {
-            if (await HenrikApi.GetAccountByName(wbName) is not HenrikApi.Account acc)
+            if (await ApiHandler.GetMMRByName(wbName) is not MultiversusApiHandler.PlayerMMR acc)
             {
                 return $"Failed to find an account called {wbName}";
             }
 
             var userAccounts = Handler.Settings.GetSettings().UserAccounts;
 
-            if (userAccounts.ContainsValue(acc.Info.Id))
+            if (userAccounts.ContainsValue(acc.Id))
             {
-                return "WB Account is allready registerd";
+                return "WB Account is already registerd";
             }
 
-            userAccounts[userId] = acc.Info.Id;
+            userAccounts[userId] = acc.Id;
             Handler.Settings.SaveSettings();
 
             return "Done, please wait for the next leaderboard update";
         }
 
-        public static async Task<MonarkTypes.Message.MonarkMessage> AddUserIdToLeaderBoard(SocketGuild guild, ulong userId, string wbId)
+        public static async Task<Message.MonarkMessage> AddUserIdToLeaderBoard(SocketGuild guild, ulong userId,
+            string wbId)
         {
-            if (await HenrikApi.GetAccountById(wbId) is not HenrikApi.Account acc)
+            if (await ApiHandler.GetMMRByName(wbId) is not MultiversusApiHandler.PlayerMMR acc)
             {
                 return $"Failed to find an account with Id {wbId}";
             }
 
             var userAccounts = Handler.Settings.GetSettings().UserAccounts;
 
-            if (userAccounts.ContainsValue(acc.Info.Id))
+            if (userAccounts.ContainsValue(acc.Id))
             {
                 return "WB Account is allready registerd";
             }
 
-            userAccounts[userId] = acc.Info.Id;
+            userAccounts[userId] = acc.Id;
             Handler.Settings.SaveSettings();
 
             return "Done, please wait for the next leaderboard update";
