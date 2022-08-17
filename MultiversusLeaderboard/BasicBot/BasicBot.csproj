@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Discord.Net" Version="3.7.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="RestSharp" Version="108.0.2-alpha.0.6" />
+    <PackageReference Include="StrawberryShake.CodeGeneration.CSharp.Analyzers" Version="12.12.1" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <PackageReference Include="StrawberryShake.Transport.Http" Version="12.12.1" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="System.Linq.Async" Version="5.0.0" />
+    <PackageReference Include="System.Threading.RateLimiting" Version="7.0.0-preview.6.22324.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Discord.Net.Commands">
+      <HintPath>..\..\..\ZDiscord.net\Discord.Net\src\Discord.Net.Commands\bin\Debug\net6.0\Discord.Net.Commands.dll</HintPath>
+    </Reference>
+    <Reference Include="Discord.Net.Core">
+      <HintPath>..\..\..\ZDiscord.net\Discord.Net\src\Discord.Net.Core\bin\Debug\net6.0\Discord.Net.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Discord.Net.Interactions">
+      <HintPath>..\..\..\ZDiscord.net\Discord.Net\src\Discord.Net.Interactions\bin\Debug\net6.0\Discord.Net.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Discord.Net.Rest">
+      <HintPath>..\..\..\ZDiscord.net\Discord.Net\src\Discord.Net.Rest\bin\Debug\net6.0\Discord.Net.Rest.dll</HintPath>
+    </Reference>
+    <Reference Include="Discord.Net.Webhook">
+      <HintPath>..\..\..\ZDiscord.net\Discord.Net\src\Discord.Net.Webhook\bin\Debug\net6.0\Discord.Net.Webhook.dll</HintPath>
+    </Reference>
+    <Reference Include="Discord.Net.WebSocket">
+      <HintPath>..\..\..\ZDiscord.net\Discord.Net\src\Discord.Net.WebSocket\bin\Debug\net6.0\Discord.Net.WebSocket.dll</HintPath>
+    </Reference>
+    <Reference Include="EdgeDB.Net.Driver">
+      <HintPath>..\..\..\EdgeDB.Net\src\EdgeDB.Net.Driver\bin\Debug\net6.0\EdgeDB.Net.Driver.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
