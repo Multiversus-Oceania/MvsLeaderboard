@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -79,8 +79,6 @@ namespace BasicBot.Services
                     _rankCache[user.DiscordId] = user;
                 }
             }
-
-            Console.WriteLine("here");
 
             //overide the current cache
             RankCache = _rankCache;
