@@ -1,9 +1,7 @@
 ﻿#region
 
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using BasicBot.Handler;
 using BasicBot.Services;
 using Discord;
 using Discord.Commands;
@@ -28,11 +26,11 @@ internal class Program
     public async Task MainAsync()
     {
         discordClient = new DiscordSocketClient(new DiscordSocketConfig
-        { LogLevel = LogSeverity.Verbose, GatewayIntents = GatewayIntents.All, AlwaysDownloadUsers = true });
+            { LogLevel = LogSeverity.Verbose, GatewayIntents = GatewayIntents.All, AlwaysDownloadUsers = true });
 
 
         var token = GetSettings().BotToken;
-        Handler.Settings.SaveSettings();
+        SaveSettings();
 
         await discordClient.LoginAsync(TokenType.Bot, token);
         await discordClient.StartAsync();
@@ -40,7 +38,7 @@ internal class Program
         var services = ConfigureServices();
 
         await services.GetRequiredService<CommandHandlerService>().InitializeAsync();
-        BasicBot.Services.RankLeaderBoard.Intilize(discordClient);
+        RankLeaderBoard.Intilize(discordClient);
 
         await Task.Delay(-1);
     }

@@ -65,7 +65,7 @@ namespace BasicBot.Services
             {
                 if (SignedUpAccounts.ContainsKey(user.Id))
                 {
-                    var p = await ApiHandler.GetMMRById(SignedUpAccounts[user.Id], user.Id);
+                    var p = await ApiHandler.GetMMRById(SignedUpAccounts[user.Id], discordId: user.Id);
                     if (p != null)
                         players.Add(p);
                 }

@@ -65,7 +65,24 @@ public class MultiversusApiHandler
             return null;
         }
 
-        return await GetMMRById(value.Results[0].Result.Id, discordId);
+        Account account = null;
+
+        for (int i = 0; i < value.Count; i++)
+        {
+            var acc = await GetAccount(value.Results[i].Result.Id);
+            if (acc != null && acc.Identity.Alternate.WbNetwork[0].Username.ToLower() == username.ToLower())
+            {
+                account = acc;
+                break;
+            }
+        }
+
+        if (account == null)
+        {
+            return null;
+        }
+
+        return await GetMMRById(account.Id, account, discordId);
     }
 
     public async Task<long> GetLeaderboardPosition(string id, GameMode mode)
@@ -85,24 +102,19 @@ public class MultiversusApiHandler
         return value.Rank;
     }
 
-    public async Task<PlayerMMR> GetMMRById(string id, ulong discordId = 0)
+    public async Task<PlayerMMR> GetMMRById(string id, Account account = null, ulong discordId = 0)
     {
+        if (account == null)
+        {
+            account = await GetAccount(id);
+        }
+
         var profileResponse = await Send($"profiles/{id}");
 
         if (!profileResponse.IsSuccessful)
             return null;
 
         if (JsonConvert.DeserializeObject<Profile>(profileResponse.Content) is not Profile profile)
-        {
-            return null;
-        }
-
-        var accountResponse = await Send($"accounts/{id}");
-
-        if (!accountResponse.IsSuccessful)
-            return null;
-
-        if (JsonConvert.DeserializeObject<Account>(accountResponse.Content) is not Account account)
         {
             return null;
         }
@@ -124,6 +136,21 @@ public class MultiversusApiHandler
                 profile.ServerData.DoublesShuffle.Zero.TopRating.Character);
 
         return MMR;
+    }
+
+    private async Task<Account> GetAccount(string id)
+    {
+        var accountResponse = await Send($"accounts/{id}");
+
+        if (!accountResponse.IsSuccessful)
+            return null;
+
+        if (JsonConvert.DeserializeObject<Account>(accountResponse.Content) is not Account accountFound)
+        {
+            return null;
+        }
+
+        return accountFound;
     }
 
     private Task refreshTask;
@@ -161,6 +188,8 @@ public class MultiversusApiHandler
 
     private static async Task Ratelimit()
     {
+        await Task.Delay(100);
+        return;
         if (limiter == null)
         {
             int rateLimit = Settings.HenrikRateLimit();
