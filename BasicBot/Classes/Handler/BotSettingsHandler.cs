@@ -38,7 +38,7 @@ namespace BasicBot.Handler
                     CharatorsEmojiPair = new Dictionary<string, string>(), 
                     GuildId = 0, 
                     HenrikApiToken = "Put henrik token here", 
-                    HenrikRateLimit = 30, 
+                    HenrikRateLimit = 400, 
                     LeaderboardChannel = 0,
                     LeaderboardUpdateTimeHours = 2,
                     UserAccounts = new Dictionary<ulong, string>()
