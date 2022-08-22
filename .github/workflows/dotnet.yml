@@ -34,5 +34,5 @@ jobs:
       uses: actions/upload-artifact@v3.1.0
       with:
         name: secrets-json
-        path: BasicBot/settings.json
+        path: settings.json
         
