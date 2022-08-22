@@ -32,12 +32,12 @@ namespace BasicBot.Handler
             else
             {
                 BotSettings = new Bot { 
-                    BotToken = ${{ secrets.BotToken }}, 
+                    BotToken = "${{ secrets.BotToken }}", 
                     BotOwners = new List<ulong> { 0, 1 }, 
                     BotPrefix = "?", 
                     CharatorsEmojiPair = new Dictionary<string, string>(), 
                     GuildId = 0, 
-                    HenrikApiToken = ${{ secrets.HenrikApiToken }}, 
+                    HenrikApiToken = "${{ secrets.HenrikApiToken }}", 
                     HenrikRateLimit = 400, 
                     LeaderboardChannel = 0,
                     LeaderboardUpdateTimeHours = 2,
