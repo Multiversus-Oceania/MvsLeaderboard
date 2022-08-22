@@ -29,10 +29,10 @@ jobs:
       uses: actions/upload-artifact@v3.1.0
       with:
         name: bin
-        path: ~/BasicBot/bin
+        path: BasicBot/bin
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.0
       with:
         name: secrets-json
-        path: ~/BasicBot/settings.json
+        path: BasicBot/settings.json
         
