@@ -28,4 +28,4 @@ jobs:
     - name: Test
       run: |
         pwd
-        cat /home/runner/work/MvsLeaderboard/MvsLeaderboard/BasicBot/bin/Debug/net6.0/*
+        ls /home/runner/work/MvsLeaderboard/MvsLeaderboard/BasicBot/bin/Debug/net6.0/*
