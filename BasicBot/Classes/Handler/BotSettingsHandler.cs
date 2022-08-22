@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BasicBot.Settings;
 using static BasicBot.Handler.String;
-
+//test 
 namespace BasicBot.Handler
 {
     public static class Settings
@@ -32,13 +32,13 @@ namespace BasicBot.Handler
             else
             {
                 BotSettings = new Bot { 
-                    BotToken = "MTAxMTIzMDU4MzIxODc3NDE0Ng.GAeBJY.7HW5qm2ZRMBSKzJNO-61hSdIJKwLByDDNc9xPw", 
+                    BotToken = "Put discord bot token here", 
                     BotOwners = new List<ulong> { 0, 1 }, 
                     BotPrefix = "?", 
                     CharatorsEmojiPair = new Dictionary<string, string>(), 
                     GuildId = 0, 
-                    HenrikApiToken = "080110d4da82d0011800203a2a7007ad8225ae31014b53c68fc7b2c65b8df85b9a2c85c5de8a0047b70792da6881eb60054267032e517a260536491e6b2e44adf1d1c950a82f8b56a4fcd969bee7e256ee2b4926d99e21deaf6eba769846c2a8e2656a946f14e906f6642c92ab53b87f0c785a21beb249b5d753f234ccea", 
-                    HenrikRateLimit = 400, 
+                    HenrikApiToken = "Put henrik token here", 
+                    HenrikRateLimit = 30, 
                     LeaderboardChannel = 0,
                     LeaderboardUpdateTimeHours = 2,
                     UserAccounts = new Dictionary<ulong, string>()
