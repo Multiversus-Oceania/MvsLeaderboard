@@ -25,3 +25,7 @@ jobs:
       run: dotnet test --verbosity normal
     - name: Publish
       run: dotnet publish
+    - name: Test
+      run: |
+        pwd
+        cat /home/runner/work/MvsLeaderboard/MvsLeaderboard/BasicBot/bin/Debug/net6.0/*
