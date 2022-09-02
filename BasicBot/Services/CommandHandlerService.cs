@@ -11,6 +11,7 @@ using Discord.Interactions;
 using BasicBot.Commands;
 using static BasicBot.Handler.Settings;
 using BasicBot.Handler;
+using System.Security.Cryptography.X509Certificates;
 
 namespace BasicBot.Services
 {
@@ -128,8 +129,22 @@ namespace BasicBot.Services
                 return;
             }
 
-            if (socketMessage.Channel is SocketGuildChannel)
+            if (socketMessage.Channel is SocketGuildChannel ch && ch.Id == 999962321931743322)
             {
+                //jank way to not need to write hard to read code, probs a better way to write
+                //perforamnce probs sucks but im just using it for ease and looks
+                var msg = socketMessage;
+                switch (true)
+                {
+                    //if any content delete
+                    case true when msg.Content != "":
+                    //if acctachments delete
+                    case true when msg.Attachments.Count > 0:
+                    //if wrong stickers delete
+                    case true when !msg.Stickers.All(x => x.Id == 0):
+                        _ = socketMessage.DeleteAsync();
+                        break;
+                }
             }
 
             
