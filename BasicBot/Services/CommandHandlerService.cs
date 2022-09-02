@@ -141,7 +141,7 @@ namespace BasicBot.Services
                     //if acctachments delete
                     case true when msg.Attachments.Count > 0:
                     //if wrong stickers delete
-                    case true when !msg.Stickers.All(x => x.Id == 0):
+                    case true when !msg.Stickers.All(x => x.Id == 999963940211654737):
                         _ = socketMessage.DeleteAsync();
                         break;
                 }
