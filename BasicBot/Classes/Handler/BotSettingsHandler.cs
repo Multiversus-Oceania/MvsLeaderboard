@@ -32,13 +32,13 @@ namespace BasicBot.Handler
             else
             {
                 BotSettings = new Bot { 
-                    BotToken = "Put discord bot token here", 
+                    BotToken = "${{ secrets.BotToken }}", 
                     BotOwners = new List<ulong> { 0, 1 }, 
                     BotPrefix = "?", 
                     CharatorsEmojiPair = new Dictionary<string, string>(), 
                     GuildId = 0, 
-                    HenrikApiToken = "Put henrik token here", 
-                    HenrikRateLimit = 30, 
+                    HenrikApiToken = "${{ secrets.HenrikApiToken }}", 
+                    HenrikRateLimit = 400, 
                     LeaderboardChannel = 0,
                     LeaderboardUpdateTimeHours = 2,
                     UserAccounts = new Dictionary<ulong, string>()
